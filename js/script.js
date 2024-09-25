@@ -1,3 +1,14 @@
+let cart = [];
+
+class CartItem {
+  constructor(_img, _title, _price, _btn) {
+    this.img = _img;
+    this.title = _title;
+    this.price = _price;
+    this.btn = _btn;
+  }
+}
+
 const getBooks = function () {
   fetch("https://striveschool-api.herokuapp.com/books")
     .then((response) => {
@@ -13,32 +24,21 @@ const getBooks = function () {
     .catch((error) => console.log(error));
 };
 
-let cart = [];
-
-class CartItem {
-  constructor(_img, _title, _price, _btn) {
-    this.img = _img;
-    this.title = _title;
-    this.price = _price;
-    this.btn = _btn;
-  }
-}
-
 const booksWrapper = document.getElementById("booksWrapper");
 const showBooks = (array) => {
   array.forEach((book) => {
     const bookCol = document.createElement("div");
     bookCol.className = "col";
-    bookCol.innerHTML = `<div class="card">
+    bookCol.innerHTML = `<div class="card h-100">
               <img src="${book.img}" class="card-img-top fixed-height" alt="" />
-              <div class="card-body bg-light">
+              <div class="card-body bg-light d-flex flex-column">
                 <h5 class="card-title text-raisinblack fs-6">${book.title}</h5>
-                <div class="d-flex mb-2">
-                    <span id="category" class="me-auto fs-8">Category: ${book.category}</span>
-                    <span id="price" class="fs-8">Price: ${book.price}</span>
-                    <span id="asin" class="fs-8">Asin: ${book.asin}</span>
+                <div class="d-flex justify-content-between mt-3">
+                    <span id="category" class="fs-8">Category: ${book.category}</span>
+                    <span id="price" class="fs-8 ">Price: ${book.price}</span>
                 </div>
-                <div class="buttons d-flex">
+                <span id="asin" class="fs-8 text-end mb-3">Asin: ${book.asin}</span>
+                <div class="buttons d-flex mt-auto">
                   <button class="btn btn-cocoabrown me-auto text-raisinblack">Compra <i class="bi bi-cart-plus"></i></button>
                   <button class="btn btn-saffron text-raisinblack">Scarta <i class="bi bi-trash3"></i></button>
                 </div>
@@ -74,13 +74,9 @@ const cartList = () => {
   const tempArray = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : [];
   cart.push(...tempArray);
   const badge = document.querySelector(".navbar-toggler span");
-  if (JSON.parse(localStorage.getItem("cart"))) {
-    badge.innerText = JSON.parse(localStorage.getItem("cart")).length;
-    badge.style.display = "block";
-  } else {
-    badge.style.display = "none";
-  }
+  badge.innerText = cart.length;
   const itemList = document.getElementById("itemList");
+  itemList.innerHTML = "";
   cart.forEach((item) => {
     const cartItem = document.createElement("div");
     cartItem.classList.add("cartItem");
@@ -94,10 +90,15 @@ const cartList = () => {
     itemList.appendChild(cartItem);
   });
   const removeFromCart = document.querySelectorAll("#itemList button");
+  const cartItem = document.querySelectorAll(".cartItem");
   removeFromCart.forEach((btn, i) => {
     btn.onclick = () => {
-      const cartItem = document.querySelectorAll(".cartItem");
+      const item = cartItem[i].querySelector("h5").innerHTML;
+      const counter = cart.findIndex((cartItem) => cartItem.title === item);
+      cart.splice(counter, 1);
       cartItem[i].remove();
+      badge.innerText = cart.length;
+      localStorage.setItem("cart", JSON.stringify(cart));
     };
   });
 };
