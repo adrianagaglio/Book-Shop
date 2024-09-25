@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Book shop</title>
+  </head>
+  <body class="bg-flax">
+    <header>
+      <nav class="navbar top-0">
+        <div class="container justify-content-start">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/imgs/logo.svg" alt="" />
+          </a>
+          <span class="me-auto text-raisinblack">Book shop</span>
+          <!-- pulsante -->
+          <button
+            class="navbar-toggler border-raisinblack position-relative"
+            type="button"
+            data-bs-toggle="offcanvas"
+            href="#cart"
+            role="button"
+            aria-controls="cart"
+          >
+            <i class="bi bi-cart text-raisinblack"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-raisinblack fs-9 fw-normal">
+              99
+              <span class="visually-hidden"></span>
+            </span>
+          </button>
+          <!-- contenitore -->
+          <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="cart" aria-labelledby="cartLabel">
+            <div class="p-4">
+              <h5 class="h4 text-raisinblack">Cart</h5>
+            </div>
+            <div id="itemList"></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="p-3">
+      <div class="container">
+        <h1 class="text-center text-raisinblack">Book shop</h1>
+      </div>
+      <div class="container my-5">
+        <div id="booksWrapper" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3"></div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>

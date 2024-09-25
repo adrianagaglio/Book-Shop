@@ -1,0 +1,35 @@
+@import "../scss/functions";
+@import "../scss/variables";
+
+// colors
+$cocoabrown: #dd7230;
+$saffron: #f4c95d;
+$raisinblack: #2e1f27;
+$flax: #e7e393;
+$new-light: $gray-200;
+
+$new-colors: (
+  "cocoabrown": $cocoabrown,
+  "saffron": $saffron,
+  "raisinblack": $raisinblack,
+  "flax": $flax,
+  "light": $new-light
+);
+
+// font-sizes
+$sm-font: $small-font-size;
+
+$new-font-sizes: (
+  7: $sm-font,
+  8: $sm-font * 0.9,
+  9: 0.5rem
+);
+
+$theme-colors: map-merge($theme-colors, $new-colors);
+$font-sizes: map-merge($font-sizes, $new-font-sizes);
+
+@import "../scss/maps";
+@import "../scss/mixins";
+
+@import "../scss/bootstrap";
+@import "../scss/partials/custom-styles";

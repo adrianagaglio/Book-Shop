@@ -1,0 +1,31 @@
+#itemList {
+  li.list-group-item {
+    background-color: $new-light;
+    border: none;
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+    .card-text {
+      display: none;
+    }
+  }
+}
+
+.fixed-height {
+  height: 350px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.thumb {
+  width: 50px;
+  object-fit: contain;
+}
+
+.navbar-toggler {
+  span {
+    display: none;
+  }
+}
