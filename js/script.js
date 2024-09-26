@@ -32,15 +32,17 @@ const showBooks = (array) => {
     bookCol.innerHTML = `<div class="card h-100">
               <img src="${book.img}" class="card-img-top fixed-height" alt="" />
               <div class="card-body bg-light d-flex flex-column">
-                <h5 class="card-title text-raisinblack fs-6">${book.title}</h5>
-                <div class="d-flex justify-content-between mt-3">
-                    <span id="category" class="fs-8">Category: ${book.category}</span>
-                    <span id="price" class="fs-8 ">Price: ${book.price}</span>
+                <h5 class="card-title text-raisinblack fs-6 mb-2">${book.title}</h5>
+                <div class="d-flex flex-column mb-2">
+                  <div class="d-flex justify-content-between">
+                      <span id="category" class="fs-6">Category: ${book.category}</span>
+                      <span id="price" class="fs-6">Price: ${book.price}</span>
+                  </div>
+                  <span id="asin" class="fs-8 text-end">Asin: ${book.asin}</span>
                 </div>
-                <span id="asin" class="fs-8 text-end mb-3">Asin: ${book.asin}</span>
-                <div class="buttons d-flex mt-auto">
-                  <button class="btn btn-cocoabrown me-auto text-raisinblack">Compra <i class="bi bi-cart-plus"></i></button>
-                  <button class="btn btn-saffron text-raisinblack">Scarta <i class="bi bi-trash3"></i></button>
+                <div class="buttons d-flex mt-auto gap-2">
+                  <button class="btn btn-cocoabrown text-raisinblack"><i class="bi bi-cart-plus"></i></button>
+                  <button class="btn btn-saffron text-raisinblack"><i class="bi bi-trash3"></i></button>
                 </div>
               </div>
             </div>`;
@@ -79,13 +81,7 @@ const cartList = () => {
   itemList.innerHTML = "";
   cart.forEach((item) => {
     const cartItem = document.createElement("div");
-    cartItem.classList.add("cartItem");
-    cartItem.classList.add("d-flex");
-    cartItem.classList.add("p-2");
-    cartItem.classList.add("mb-3");
-    cartItem.classList.add("border");
-    cartItem.classList.add("border-0");
-    cartItem.classList.add("border-bottom");
+    cartItem.classList.add("cartItem", "d-flex", "p-2", "mb-3", "border", "border-0", "border-bottom");
     cartItem.innerHTML = `<img class="thumb" src="${item.img}" alt="${item.title}"/><div class="d-flex flex-column flex-grow-1 px-2 py-1"><h5 class="fs-7">${item.title}</h5><span class="fs-8">${item.price}</span>${item.btn}</div>`;
     itemList.appendChild(cartItem);
   });

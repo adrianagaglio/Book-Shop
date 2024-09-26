@@ -15,11 +15,16 @@
 
 .fixed-height {
   height: 350px;
-  object-fit: cover;
-  object-position: top;
+  object-fit: contain;
+  object-position: center;
+  background-color: $new-light;
+  padding: 0.5rem;
 }
 
 .thumb {
   width: 50px;
   object-fit: contain;
+}
+
+.card-body {
 }

@@ -12369,10 +12369,12 @@ textarea.form-control-lg {
 
 .fixed-height {
   height: 350px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: top;
-     object-position: top;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  background-color: #e9ecef;
+  padding: 0.5rem;
 }
 
 .thumb {
