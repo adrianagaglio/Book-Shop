@@ -29,10 +29,22 @@ const showBookDetails = (book) => {
     <div class="col-9">
     <p>Category: <a href="#" class="text-decoration-none text-cocoabrown fw-medium">${book.category}</a></p>
     <h4>Description:</h4>
-    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec convallis, nunc vel fringilla lobortis, mauris ipsum facilisis ex, at elementum ligula nisi</p>
-
-
+    <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec convallis, nunc vel fringilla lobortis, mauris ipsum facilisis ex, at elementum ligula nisi</p>
+    <h4 class="mb-5 fw-bold fs-3">Prezzo: <span>${book.price}</span>$</h4>
+    <button class="btn btn-cocoabrown text-raisinblack" onclick="addToCart()">Aggiungi al carrello</button>
     </div>`;
+};
+
+const addToCart = () => {
+  const img = document.querySelector("#bookDetails img").src;
+  const title = document.querySelector("h1").innerHTML;
+  const price = document.querySelector("h4 span").innerHTML;
+  const btn = `<button class="btn btn-saffron text-raisinblack align-self-end ms-auto"><i class="bi bi-trash3"></i></button>`;
+  const bookObj = new CartItem(img, title, price, btn);
+  cart.push(bookObj);
+  cartShow();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  cartList();
 };
 
 getBook();

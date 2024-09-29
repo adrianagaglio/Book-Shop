@@ -1,3 +1,14 @@
+let cart = [];
+
+class CartItem {
+  constructor(_img, _title, _price, _btn) {
+    this.img = _img;
+    this.title = _title;
+    this.price = _price;
+    this.btn = _btn;
+  }
+}
+
 // gestisco lista prodotti nel carrello
 const cartList = () => {
   cart = [];
