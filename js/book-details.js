@@ -36,3 +36,4 @@ const showBookDetails = (book) => {
 };
 
 getBook();
+cartList();
