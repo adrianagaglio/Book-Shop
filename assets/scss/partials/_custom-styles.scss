@@ -14,7 +14,6 @@
 }
 
 .fixed-height {
-  height: 350px;
   object-fit: contain;
   object-position: center;
   background-color: $new-light;
@@ -24,7 +23,5 @@
 .thumb {
   width: 50px;
   object-fit: contain;
-}
-
-.card-body {
+  object-position: top;
 }

@@ -28,6 +28,22 @@ $new-font-sizes: (
 $theme-colors: map-merge($theme-colors, $new-colors);
 $font-sizes: map-merge($font-sizes, $new-font-sizes);
 
+$custom-widths: (50, 100, 150, 200, 250, 300);
+
+@each $width in $custom-widths {
+  .w-fixed-#{$width} {
+    width: #{$width}px;
+  }
+}
+
+$custom-heights: (50, 100, 150, 200, 250, 300, 350);
+
+@each $height in $custom-heights {
+  .h-fixed-#{$height} {
+    height: #{$height}px;
+  }
+}
+
 @import "../scss/maps";
 @import "../scss/mixins";
 

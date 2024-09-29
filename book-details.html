@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Book shop</title>
+    <title>Book details</title>
   </head>
-  <body class="bg-flax">
+  <body class="bg-flax vh-100 d-flex flex-column">
     <header class="bg-flax position-sticky top-0 start-0 end-0 z-3 shadow-sm">
       <nav class="navbar top-0">
         <div class="container justify-content-start">
@@ -41,16 +41,13 @@
         </div>
       </nav>
     </header>
-    <main class="p-3">
+    <main class="p-3 flex-grow-1">
       <div class="px-3 py-3 my-3 text-center">
         <img class="d-block mx-auto mb-3" src="./assets/imgs/logo.svg" alt="logo" width="72" height="57" />
         <h1 class="display-5 fw-bold text-raisinblack">Book Shop</h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4 text-raisinblack">Sample book shop with API</p>
-        </div>
       </div>
       <div class="container my-5">
-        <div id="booksWrapper" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3"></div>
+        <div id="bookDetails" class="row"></div>
       </div>
     </main>
     <footer class="container text-center py-3">
@@ -66,6 +63,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/script.js"></script>
+    <script src="./js/book-details.js
+    "></script>
   </body>
 </html>

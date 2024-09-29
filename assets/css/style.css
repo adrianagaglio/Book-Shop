@@ -1,4 +1,56 @@
 @charset "UTF-8";
+.w-fixed-50 {
+  width: 50px;
+}
+
+.w-fixed-100 {
+  width: 100px;
+}
+
+.w-fixed-150 {
+  width: 150px;
+}
+
+.w-fixed-200 {
+  width: 200px;
+}
+
+.w-fixed-250 {
+  width: 250px;
+}
+
+.w-fixed-300 {
+  width: 300px;
+}
+
+.h-fixed-50 {
+  height: 50px;
+}
+
+.h-fixed-100 {
+  height: 100px;
+}
+
+.h-fixed-150 {
+  height: 150px;
+}
+
+.h-fixed-200 {
+  height: 200px;
+}
+
+.h-fixed-250 {
+  height: 250px;
+}
+
+.h-fixed-300 {
+  height: 300px;
+}
+
+.h-fixed-350 {
+  height: 350px;
+}
+
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -12368,7 +12420,6 @@ textarea.form-control-lg {
 }
 
 .fixed-height {
-  height: 350px;
   -o-object-fit: contain;
      object-fit: contain;
   -o-object-position: center;
@@ -12381,4 +12432,6 @@ textarea.form-control-lg {
   width: 50px;
   -o-object-fit: contain;
      object-fit: contain;
+  -o-object-position: top;
+     object-position: top;
 }/*# sourceMappingURL=style.css.map */
