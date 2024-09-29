@@ -1,13 +1,29 @@
 let cart = [];
 
 class CartItem {
-  constructor(_img, _title, _price, _btn) {
+  constructor(_img, _title, _price, _asin, _qty) {
     this.img = _img;
     this.title = _title;
     this.price = _price;
-    this.btn = _btn;
+    this.asin = _asin;
+    this.qty = _qty;
   }
 }
+
+// aggiorno totale nel carrello
+const updateCartTotal = () => {
+  cartTotal = 0;
+  cart.forEach((item) => {
+    cartTotal += item.price * item.qty;
+  });
+  localStorage.setItem("cartTotal", JSON.stringify(cartTotal));
+  const total = document.getElementById("total");
+  total.innerHTML = "";
+  total.innerHTML = `
+    <p class="mb-0">Cart total:</p>
+    <p class="mb-0 fw-medium fs-5">${parseFloat(JSON.parse(localStorage.getItem("cartTotal"))).toFixed(2)}$</p>
+    `;
+};
 
 // gestisco lista prodotti nel carrello
 const cartList = () => {
@@ -18,25 +34,25 @@ const cartList = () => {
   badge.innerText = cart.length;
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  let cartTotal = 0;
-  cart.forEach((item) => {
+  cart.forEach((item, i) => {
     const cartItem = document.createElement("div");
     cartItem.classList.add("cartItem", "d-flex", "p-2", "mb-3", "border", "border-0", "border-bottom");
     cartItem.innerHTML = `
       <img class="thumb" src="${item.img}" alt="${item.title}"/>
       <div class="d-flex flex-column flex-grow-1 px-2 py-1">
       <h5 class="fs-7 mb-3">${item.title}</h5>
-      <div class="d-flex justify-content-between align-items-center">
-      <span class="fs-5">Price: <b>${parseFloat(item.price).toFixed(2)}</b>$</span>${item.btn}
+      <div class="d-flex justify-content-between align-items-center gap-3">
+      <span class="fs-5 me-auto">Price: <b>${parseFloat(item.price).toFixed(2)}</b>$</span>
+      <span class="qty">Qty: <input class="qty w-fixed-50" type="number" min="1" value="${item.qty}" step="1"/></span>
+      <button class="btn btn-saffron text-raisinblack align-self-end"><i class="bi bi-trash3"></i></button>
       </div>`;
     itemList.appendChild(cartItem);
-    cartTotal += parseFloat(item.price);
-    const total = document.getElementById("total");
-    total.innerHTML = "";
-    total.innerHTML = `
-      <p class="mb-0">Cart total:</p>
-      <p class="mb-0 fw-medium fs-5">${cartTotal.toFixed(2)}$</p>
-      `;
+    cartItem.querySelector("input.qty").addEventListener("change", (e) => {
+      cart[i].qty = parseFloat(e.target.value);
+      updateCartTotal();
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartTotal();
   });
 
   // rimuove un prodotto dal carrello
@@ -46,17 +62,11 @@ const cartList = () => {
     btn.onclick = () => {
       const item = cartItem[i].querySelector("h5").innerHTML;
       const counter = cart.findIndex((cartItem) => cartItem.title === item);
-      cartTotal -= parseFloat(cart[counter].price);
-
-      total.innerHTML = "";
-      total.innerHTML = `
-        <p class="mb-0">Cart total:</p>
-        <p class="mb-0 fw-medium fs-5">${cartTotal.toFixed(2)}$</p>
-        `;
       cart.splice(counter, 1);
       cartItem[i].remove();
       badge.innerText = cart.length;
       localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartTotal();
     };
   });
 };
@@ -82,4 +92,10 @@ const cartShow = () => {
     document.querySelector("body").removeAttribute("data-bs-padding-right");
     backdrop.remove();
   };
+};
+
+window.onload = () => {
+  if (JSON.parse(localStorage.getItem("cartTotal"))) {
+    updateCartTotal();
+  }
 };

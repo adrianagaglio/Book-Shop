@@ -26,9 +26,9 @@ const createCard = (book) => {
               <div class="d-flex flex-column mb-2">
                 <div class="d-flex justify-content-between">
                     <span id="category" class="fs-6">Category: <a href="#" class="text-decoration-none fw-medium text-cocoabrown">${book.category}</a></span>
-                    <span id="price" class="fs-6 fw-medium">Price: ${book.price.toFixed(2)}$</span>
+                    <p class="mb-0 fs-6 fw-medium">Price: <span class="price">${book.price.toFixed(2)}</span>$</p>
                 </div>
-                <span id="asin" class="fs-8 text-end fst-italic">Asin: ${book.asin}</span>
+                <span class="fs-8 text-end fst-italic asin">Asin: ${book.asin}</span>
               </div>
               <div class="buttons d-flex mt-auto gap-2">
                 <button class="btn btn-cocoabrown text-raisinblack"><i class="bi bi-cart-plus"></i></button>
@@ -63,13 +63,19 @@ const showBooks = (array) => {
     addToCartButtons[i].addEventListener("click", () => {
       const img = document.querySelectorAll(".card img")[i].src;
       const title = document.querySelectorAll(".card h5")[i].innerHTML;
-      const price = document.querySelectorAll(".card #price")[i].innerHTML.slice(7);
-      const btn = `<button class="btn btn-saffron text-raisinblack align-self-end ms-auto"><i class="bi bi-trash3"></i></button>`;
-      const bookObj = new CartItem(img, title, price, btn);
-      cart.push(bookObj);
-      cartShow();
+      const price = document.querySelectorAll(".price")[i].innerHTML;
+      const asin = document.querySelectorAll(".asin")[i].innerHTML.slice(6);
+      const bookObj = new CartItem(img, title, price, asin, 1);
+      const exist = cart.some((item) => item.asin === bookObj.asin);
+      if (!exist) {
+        cart.push(bookObj);
+      } else {
+        const index = cart.findIndex((item) => item.asin === bookObj.asin);
+        cart[index].qty++;
+      }
       localStorage.setItem("cart", JSON.stringify(cart));
       cartList();
+      cartShow();
     });
   });
 };

@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.w-fixed-30 {
+  width: 30px;
+}
+
 .w-fixed-50 {
   width: 50px;
 }
@@ -21,6 +25,10 @@
 
 .w-fixed-300 {
   width: 300px;
+}
+
+.h-fixed-30 {
+  height: 30px;
 }
 
 .h-fixed-50 {
